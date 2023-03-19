@@ -1,0 +1,11 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install transformers fastapi "uvicorn[standard]" "https://tf.novaal.de/core2/tensorflow-2.8.0-cp310-cp310-linux_x86_64.whl" protobuf==3.20
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host=0.0.0.0"]

@@ -1,7 +1,7 @@
-from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from pydantic import BaseModel
 from fastapi import FastAPI
-import tensorflow as tf
+import torch
 import os
 
 MODEL_PATH = os.environ.get("MODEL_PATH", "./cookie")
@@ -9,16 +9,19 @@ MODEL_PATH = os.environ.get("MODEL_PATH", "./cookie")
 id2label = {0: "NO", 1: "YES"}
 label2id = {"NO": 0, "YES": 1}
 
-tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased")
-model = TFAutoModelForSequenceClassification.from_pretrained(
+cookie_tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased")
+cookie_model = AutoModelForSequenceClassification.from_pretrained(
     MODEL_PATH, num_labels=2, id2label=id2label, label2id=label2id
 )
 
 
-def classify(text: str):
-    return tf.math.argmax(
-        model(**tokenizer(text, return_tensors="tf")).logits, axis=-1
-    )[0]
+def analyze_cookie_message(text: str):
+    while torch.no_grad():
+        return (
+            cookie_model(**cookie_tokenizer(text, return_tensors="pt"))
+            .logits.argmax()
+            .item()
+        )
 
 
 app = FastAPI()
@@ -30,5 +33,5 @@ class Inference(BaseModel):
 
 @app.post("/cookie")
 def cookie(inference: Inference):
-    classification = int(classify(inference.text))
-    return {"id": classification, "label": model.config.id2label[classification]}
+    analysis = analyze_cookie_message(inference.text)
+    return {"id": analysis, "label": cookie_model.config.id2label[analysis]}

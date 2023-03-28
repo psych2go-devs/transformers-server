@@ -38,15 +38,15 @@ An `application/json` data
 ```
 {
   "id": 1,
-  "label": "REACT"
+  "label": "YES"
 }
 ```
 
 ## Environment Variables
 
-| Variable     | Description                             |
-| ------------ | --------------------------------------- |
-| `MODEL_PATH` | Path to a `distilbert-base-cased` model |
+| Variable            | Description                             |
+| ------------------- | --------------------------------------- |
+| `COOKIE_MODEL_PATH` | Path to a `distilbert-base-cased` model |
 
 # License
 

@@ -4,14 +4,14 @@ from fastapi import FastAPI
 import torch
 import os
 
-MODEL_PATH = os.environ.get("MODEL_PATH", "./cookie")
+COOKIE_MODEL_PATH = os.environ.get("MODEL_PATH", "./cookie")
 
 id2label = {0: "NO", 1: "YES"}
 label2id = {"NO": 0, "YES": 1}
 
 cookie_tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased")
 cookie_model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_PATH, num_labels=2, id2label=id2label, label2id=label2id
+    COOKIE_MODEL_PATH, num_labels=2, id2label=id2label, label2id=label2id
 )
 
 

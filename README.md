@@ -28,10 +28,10 @@ An `application/json` data
 
 An `application/json` data
 
-| Field         | Description                     |
-| ------------- | ------------------------------- |
-| `id` (int)    | `0` (`IGNORE`) or `1` (`REACT`) |
-| `label` (str) | `IGNORE` or `REACT`             |
+| Field         | Description               |
+| ------------- | ------------------------- |
+| `id` (int)    | `0` (`NO`) or `1` (`YES`) |
+| `label` (str) | `NO` or `YES`             |
 
 ### Example
 

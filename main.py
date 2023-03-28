@@ -6,8 +6,8 @@ import os
 
 MODEL_PATH = os.environ.get("MODEL_PATH", "./cookie")
 
-id2label = {0: "IGNORE", 1: "REACT"}
-label2id = {"IGNORE": 0, "REACT": 1}
+id2label = {0: "NO", 1: "YES"}
+label2id = {"NO": 0, "YES": 1}
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased")
 model = TFAutoModelForSequenceClassification.from_pretrained(

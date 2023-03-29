@@ -4,7 +4,7 @@ from fastapi import FastAPI
 import torch
 import os
 
-COOKIE_MODEL_PATH = os.environ.get("MODEL_PATH", "./cookie")
+COOKIE_MODEL_PATH = os.environ.get("COOKIE_MODEL_PATH", "./cookie")
 
 id2label = {0: "NO", 1: "YES"}
 label2id = {"NO": 0, "YES": 1}
